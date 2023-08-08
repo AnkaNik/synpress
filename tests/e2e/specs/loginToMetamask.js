@@ -52,11 +52,28 @@ describe('Metamask Extension tests', () => {
     cy.contains('Withdrawals').click({ force: true });
    // cy.get('#table-withdrawals-history-0').should('be.visible');
 
+   //send
+   cy.get('#send').click();
+   cy.get('.update-theme-fill').click({force:true});
+   cy.get('#select-filters').click().type('USDT');
+   cy.get('[data-index="0"]').click();
+   cy.get("#sendAmount").click().type('101');
+   cy.get('#recipientAddress').click().type('0x0d88abf9bbd27d8f50a60129634e4a02da09de33');
+   cy.get('#send-funds').click();
+   cy.get('confirm-send').click();
+
+   //swap
+
+
+
+   //yield
+
+    //bridged
    cy.get('#bridge-page-link').click();
    //cy.get('#toggle-bridge-widget').click();
-   cy.get('#bridge-amount').click().type('0.012');
+   cy.get('#bridge-amount').click().type('0.007');
    cy.get('#chainIn-open').click();
-   cy.get('#ETHEREUM').first().click();
+   cy.get('#ETHEREUM').click();
    cy.get('#chainOut-open').click();
    cy.get('#ZKEVM').last().click( {force: true});
    cy.get("#bridge-withdraw-amount").click({force: true});
@@ -69,7 +86,6 @@ describe('Metamask Extension tests', () => {
    cy.confirmMetamaskDataSignatureRequest().should('be.true');
    cy.wait(9000);
    //cy.get('#try-again-make-another').click();
-
     //second deposit
     cy.get('#header-user-profile').click();
     cy.get('#portfolio-profile-deposit').click( { force: true });
